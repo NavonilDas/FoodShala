@@ -50,14 +50,6 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label for="userType">User Type *</label>
-							<select id="userType" name="user_type" class="form-control" required onchange="test(event)">
-								<option selected>Customer</option>
-								<option>Resturant</option>
-							</select>
-					</div>
-
 						<div class="form-group" id="pref-group">
 							<label for="prefer">Preference *</label>
 							<select name="preference" id="prefer" class="form-control">

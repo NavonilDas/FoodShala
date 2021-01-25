@@ -16,7 +16,7 @@ class Register extends CI_Controller {
 		// echo '<pre>' . print_r($this->input->post('user_type'),true).'</pre>';
 
 		if ( $this->form_validation->run() == false ) {
-			$this->load->view( 'register_user' );
+			$this->load->view( 'register_customer' );
 		} else {
 			$this->load->model( 'UserAuth' );
 			$pref = $this->input->post( 'preference' );
