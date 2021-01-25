@@ -7,16 +7,16 @@ CREATE TABLE user_type(
 
 INSERT INTO user_type(`type`) VALUES
 ('Resturant'),
-('User');
+('Customer');
 
 CREATE TABLE user(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(20) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	phone INT(10) NOT NULL,
+	email VARCHAR(255) NOT NULL UNIQUE,
+	phone INT(10) NOT NULL UNIQUE,
 	password VARCHAR(1024) NOT NULL,
 	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	preference VARCHAR(50),
 	type int NOT NULL,
-	FOREIGN KEY (type) REFERENCES user_type(id),
+	FOREIGN KEY (type) REFERENCES user_type(id)
 );
