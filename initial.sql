@@ -1,1 +1,22 @@
 CREATE DATABASE foodshala CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE user_type(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	type VARCHAR(20) NOT NULL
+);
+
+INSERT INTO user_type(`type`) VALUES
+('Resturant'),
+('User');
+
+CREATE TABLE user(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	phone INT(10) NOT NULL,
+	password VARCHAR(1024) NOT NULL,
+	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	preference VARCHAR(50),
+	type int NOT NULL,
+	FOREIGN KEY (type) REFERENCES user_type(id),
+);
