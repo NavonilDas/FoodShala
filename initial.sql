@@ -32,3 +32,11 @@ CREATE TABLE user(
 	FOREIGN KEY (preference) REFERENCES preference(id),
 	INDEX user_type(type)
 );
+
+
+CREATE TABLE food(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	price FLOAT NOT NULL,
+	thumbnail VARCHAR(255) NOT NULL
+);

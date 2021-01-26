@@ -18,7 +18,7 @@ class Home extends CI_Controller {
 			}
 		}
 		if ( $data['role'] === 'Resturant' ) {
-			echo 'x';
+			$this->load->view( 'resturant_menu', $data );
 		} else {
 			$this->load->view( 'food_menu', $data );
 		}
