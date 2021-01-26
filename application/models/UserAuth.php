@@ -29,7 +29,7 @@ class UserAuth extends CI_Model {
 	}
 
 	public function getUserRole( $user_id ) {
-		$query = $this->db->query( "SELECT user_type.type from user INNER JOIN user_type on user_type.id = user.id WHERE user.id = $user_id;" );
+		$query = $this->db->query( "SELECT user_type.type from user INNER JOIN user_type on user_type.id = user.type WHERE user.id = $user_id;" );
 		$users = $query->result();
 		if ( count( $users ) <= 0 ) {
 			return null;

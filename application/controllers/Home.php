@@ -11,14 +11,16 @@ class Home extends CI_Controller {
 		$data = array(
 			'role' => 'anonymous',
 		);
-
 		if ( $user !== null ) {
 			$type = $this->UserAuth->getUserRole( $user->id );
 			if ( $type !== null ) {
 				$data['role'] = $type->type;
 			}
 		}
-
-		$this->load->view( 'food_menu', $data );
+		if ( $data['role'] === 'Resturant' ) {
+			echo 'x';
+		} else {
+			$this->load->view( 'food_menu', $data );
+		}
 	}
 }

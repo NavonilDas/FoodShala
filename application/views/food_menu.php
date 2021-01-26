@@ -39,7 +39,7 @@
 
 			<?php if($role === 'Resturant'){?>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
+					<a class="nav-link" href="#">My </a>
 				</li>
 			<?php }?>
 
