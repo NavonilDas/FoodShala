@@ -3,36 +3,45 @@ defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
 
 class Register extends CI_Controller {
 
-	/**
-	 */
 	public function index() {
-		$this->load->library( 'form_validation' );
+		redirect( '/register/customer' );
+	}
 
-		// Rules
+	public function customer() {
+		$data = array(
+			'prefer' => array(),
+		);
+
+		$this->load->library( 'form_validation' );
 		$this->form_validation->set_rules( 'name', 'Full Name', 'required' );
 		$this->form_validation->set_rules( 'email', 'Email', 'required|valid_email' );
 
-		// echo '<pre>' . print_r($this->input,true).'</pre>';
-		// echo '<pre>' . print_r($this->input->post('user_type'),true).'</pre>';
+		// load preference
+		$this->load->model( 'PreferenceModel' );
+		$data['prefer'] = $this->PreferenceModel->getPreferences();
 
 		if ( $this->form_validation->run() == false ) {
-			$this->load->view( 'register_customer' );
+			$this->load->view( 'register_customer', $data );
 		} else {
 			$this->load->model( 'UserAuth' );
 			$pref = $this->input->post( 'preference' );
 
+			// FIXME: Don't use MD5 for production use salt + some private key crpyto
 			$user               = array();
 			$user['name']       = $this->input->post( 'name' );
 			$user['email']      = $this->input->post( 'email' );
 			$user['phone']      = $this->input->post( 'phone' );
 			$user['password']   = md5( $this->input->post( 'password' ) );
-			$user['type']       = $this->UserAuth->getUserType( $this->input->post( 'user_type' ) );
-			$user['preference'] = ( $pref == '' || $pref == null ) ? null : $pref;
+			$user['preference'] = $pref;
+			$user['type']       = $this->UserAuth->getUserType( 'Customer' );
 
 			$this->UserAuth->create( $user );
 
 			$this->load->view( 'account_created' );
-
 		}
+	}
+
+	public function resturant() {
+
 	}
 }

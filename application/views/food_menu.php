@@ -82,7 +82,7 @@
 		window.location.href = "<?php echo base_url() . 'login/logout'; ?>"
 	});
 	$('.signup').click(function() {
-		window.location.href = "<?php echo base_url() . 'register'; ?>"
+		window.location.href = "<?php echo base_url() . 'register/customer'; ?>"
 	});
 	$('.cart').click(function() {
 		window.location.href = "<?php echo base_url() . 'cart'; ?>"
