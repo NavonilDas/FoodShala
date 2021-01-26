@@ -38,5 +38,10 @@ CREATE TABLE food(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(20) NOT NULL,
 	price FLOAT NOT NULL,
-	thumbnail VARCHAR(255) NOT NULL
+	thumbnail VARCHAR(255) NOT NULL,
+	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	type int NOT NULL,
+	created_by int NOT NULL,
+	FOREIGN KEY (type) REFERENCES preference(id),
+	FOREIGN KEY (created_by) REFERENCES user(id)
 );

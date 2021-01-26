@@ -1,6 +1,5 @@
 <?php require_once 'header.php'; ?>
 
-
 <div class="container">
 	<div class="col-md-6 mt-3 ml-auto mr-auto">
 		<div class="card">
@@ -21,10 +20,21 @@
 					</div>
 
 					<div class="form-group">
-						<label for="thumbnail">Thumbnail</label>
-						<input type="file" class="form-control-file" id="thumbnail" name="thumbnail">
+						<label for="thumbnail">Thumbnail *</label>
+						<input type="file" class="form-control-file" id="thumbnail" name="thumbnail" required>
 					</div>
-	
+
+					<div class="form-group" id="pref-group">
+						<label for="prefer">Type *</label>
+						<select name="preference" id="prefer" class="form-control" required>
+							<?php
+							foreach ( $prefer as $item ) {
+								echo '<option value="' . $item->id . '">' . $item->name . '</option>';
+							}
+							?>
+						</select>
+					</div>
+
 					<button type="submit" class="btn btn-primary btn-block">Add Item</button>
 				<form>
 			</div>
