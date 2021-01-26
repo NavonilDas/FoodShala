@@ -43,7 +43,7 @@
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
 
-			<button class="btn btn-light my-2 my-sm-0 addItem" type="submit"><i class="fa fa-shopping-cart"></i> Add Item</button>
+			<button class="btn btn-light my-2 my-sm-0 addItem" type="button"><i class="fa fa-shopping-cart"></i> Add Item</button>
 			
 			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="m-auto"><?php echo $user->name[0]; ?></span>
@@ -67,6 +67,9 @@
 	</div>
 
 	<script>
+	$('.addItem').click(function() {
+		window.location.href = "<?php echo base_url() . 'addmenu'; ?>";
+	});
 	$('.logout').click(function() {
 		window.location.href = "<?php echo base_url() . 'login/logout'; ?>"
 	});
