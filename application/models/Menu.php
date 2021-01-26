@@ -18,9 +18,21 @@ class Menu extends CI_Model {
 	public function getMyItems( $userid, $pgNo = 0 ) {
 		return $this->db
 			->from( 'food' )
-			->where('created_by',$userid)
-			->limit( 10, $pgNo * 10 )
+			->where( 'created_by', $userid )
+			->limit( 12, $pgNo * 12 )
 			->get()
 			->result();
+	}
+
+	public function delete( $id, $user_id ) {
+		print_r(
+		$this->db->delete(
+			'food',
+			array(
+				'id'         => $id,
+				'created_by' => $user_id,
+			)
+		));
+
 	}
 }

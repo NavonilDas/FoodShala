@@ -59,6 +59,17 @@ class AddMenu extends CI_Controller {
 		}
 	}
 
+	public function delete( $id = -1 ) {
+		$user = $this->session->userdata( 'user' );
+		if ( $user === null ) {
+			redirect( '/401' );
+			return;
+		}
+		$this->load->model( 'Menu' );
+		$this->Menu->delete( $id, $user->id );
+		redirect('/');
+	}
+
 	/**
 	 */
 	public function list() {

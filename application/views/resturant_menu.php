@@ -40,6 +40,9 @@ if ( $user === null || $role !== 'Resturant' ) {
 				<a class="nav-link" href="#">My Menu <span class="sr-only">(current)</span></a>
 			</li>
 
+			<li class="nav-item">
+				<a class="nav-link" href="#">View Orders</a>
+			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
 
@@ -62,18 +65,7 @@ if ( $user === null || $role !== 'Resturant' ) {
 	</nav>
 
 	<h1 class="m-2">My Menu</h1>
-	<div class="row menu m-0">
-		<div class="col-md-3">
-			<div class="card">
-				<img class="card-img-top" src="<?php echo base_url().'uploads/'; ?>2b98867d259530411b7cb63b008e4984.JPG" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="row food-menu m-0 pl-2"></div>
 
 	<script>
 	$('.addItem').click(function() {
@@ -84,7 +76,23 @@ if ( $user === null || $role !== 'Resturant' ) {
 	});
 	$.get("<?php echo base_url() . 'addmenu/list'; ?>", function(data, status){
 		// alert("Data: " + data + "\nStatus: " + status);
-		console.log(data);
+		const row = $('.food-menu');
+		if(data.length === 0){
+			row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');
+		}
+		for(var item of data){
+			row.append(`<div class="col-md-3 mt-3">
+			<div class="card">
+				<img class="card-img-top" src="<?php echo base_url().'uploads/'; ?>${item.thumbnail}" alt="Card image cap">
+				<div class="card-body d-flex">
+					<div class="flex-grow-1">
+						<h5 class="card-title">${item.name}</h5>
+						<p class="card-text">${item.price} Rs.</p>
+					</div>
+					<a href="<?php echo base_url().'delete/';?>${item.id}" class="btn btn-danger m-auto"><i class="fa fa-trash"></i></a>
+				</div>
+			</div></div>`);
+		}
 	});
 	</script>
 </body>
