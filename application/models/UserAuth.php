@@ -12,6 +12,25 @@ class UserAuth extends CI_Model {
 	/**
 	 *
 	 */
+	public function login( $email, $pass ) {
+		$query = $this->db
+			->select( 'id,name,preference,type' )
+			->from( 'user' )
+			->where( 'email', $email )
+			->where( 'password', md5( $pass ) )
+			->get();
+
+		$users = $query->result();
+		if ( count( $users ) <= 0 ) {
+			return null;
+		} else {
+			return $users[0];
+		}
+	}
+
+	/**
+	 *
+	 */
 	public function getUserType( $type = '' ) {
 		$query  = $this->db
 		->select( 'id' )
