@@ -81,3 +81,12 @@ VALUES
 ('ABC30',100,'c0186c80f13371b9b238488bae14f5bd.JPG',1,2),
 ('ABC31',100,'c0186c80f13371b9b238488bae14f5bd.JPG',1,2),
 ('ABC32',100,'c0186c80f13371b9b238488bae14f5bd.JPG',1,2);
+
+CREATE TABLE cart(
+	food_id int NOT NULL,
+	user_id int NOT NULL,
+	quantity int NOT NULL DEFAULT 1,
+	FOREIGN KEY (food_id) REFERENCES food(id),
+	FOREIGN KEY (user_id) REFERENCES user(id),
+	PRIMARY KEY(food_id,user_id)
+);

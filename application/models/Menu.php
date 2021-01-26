@@ -10,7 +10,7 @@ class Menu extends CI_Model {
 	public function getItems( $pgNo = 0 ) {
 		return $this->db
 			->from( 'food' )
-			->limit( 10, $pgNo * 10 )
+			->limit( 12, $pgNo * 12 )
 			->get()
 			->result();
 	}

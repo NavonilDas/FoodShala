@@ -23,4 +23,10 @@ class Home extends CI_Controller {
 			$this->load->view( 'food_menu', $data );
 		}
 	}
+
+	public function menu_items( $pgNo = 0 ) {
+		$this->load->model( 'Menu' );
+		header( 'Content-Type: application/json' );
+		echo json_encode( $this->Menu->getItems( $pgNo ) );
+	}
 }

@@ -67,12 +67,12 @@ class AddMenu extends CI_Controller {
 		}
 		$this->load->model( 'Menu' );
 		$this->Menu->delete( $id, $user->id );
-		redirect('/');
+		redirect( '/' );
 	}
 
 	/**
 	 */
-	public function list() {
+	public function list( $pgNo = 0 ) {
 		$user = $this->session->userdata( 'user' );
 		if ( $user === null ) {
 			redirect( '/401' );
@@ -81,7 +81,6 @@ class AddMenu extends CI_Controller {
 
 		$this->load->model( 'Menu' );
 		header( 'Content-Type: application/json' );
-		// echo json_encode( $this->Menu->getItems( 0 ) );
-		echo json_encode( $this->Menu->getMyItems( $user->id, 0 ) );
+		echo json_encode( $this->Menu->getMyItems( $user->id, $pgNo ) );
 	}
 }

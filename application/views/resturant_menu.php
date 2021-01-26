@@ -75,7 +75,6 @@ if ( $user === null || $role !== 'Resturant' ) {
 		window.location.href = "<?php echo base_url() . 'login/logout'; ?>"
 	});
 	$.get("<?php echo base_url() . 'addmenu/list'; ?>", function(data, status){
-		// alert("Data: " + data + "\nStatus: " + status);
 		const row = $('.food-menu');
 		if(data.length === 0){
 			row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');
