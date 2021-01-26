@@ -54,7 +54,7 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
 					<a class="dropdown-item" href="#"><?php echo $user->name; ?></a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Logout</a>
+					<a class="dropdown-item logout" href="#">Logout</a>
 				</div>
 
 			</div>
@@ -73,6 +73,9 @@
 	<script>
 	$('.login').click(function() {
 		window.location.href = "<?php echo base_url() . 'login'; ?>"
+	});
+	$('.logout').click(function() {
+		window.location.href = "<?php echo base_url() . 'login/logout'; ?>"
 	});
 	$('.signup').click(function() {
 		window.location.href = "<?php echo base_url() . 'register'; ?>"
