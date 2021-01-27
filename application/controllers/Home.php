@@ -27,6 +27,8 @@ class Home extends CI_Controller {
 	public function menu_items( $pgNo = 0 ) {
 		$this->load->model( 'Menu' );
 		header( 'Content-Type: application/json' );
-		echo json_encode( $this->Menu->getItems( $pgNo ) );
+		$user    = $this->session->userdata( 'user' );
+		$user_id = ( $user !== null ) ? $user->id : null;
+		echo json_encode( $this->Menu->getItems( $user_id, $pgNo ) );
 	}
 }

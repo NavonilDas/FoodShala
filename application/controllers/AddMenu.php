@@ -77,6 +77,7 @@ class AddMenu extends CI_Controller {
 	 */
 	public function list( $pgNo = 0 ) {
 		$user = $this->session->userdata( 'user' );
+		
 		if ( $user === null ) {
 			// Show Unauthorized Message if user is not the creator
 			$err_msg = 'You don\'t Have permission to access this resource. To Visit Home <a href="' . base_url() . '">Click Here</a>';

@@ -30,13 +30,11 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url().'orders'; ?>">My Orders</a>
+				<a class="nav-link" href="<?php echo base_url() . 'orders'; ?>">My Orders</a>
 			</li>
 
 		</ul>
 
-		<form class="form-inline my-2 my-lg-0">
-		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 		<?php if ( $user === null ) { ?>
 			<button class="btn btn-light my-2 my-sm-0 login" type="button"><i class="fa fa-user"></i> Login</button>
 			<button class="btn btn-light my-2 my-sm-0 ml-2 signup" type="button"><i class="fa fa-user-plus"></i> Sign Up</button>
@@ -47,14 +45,13 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
 					<a class="dropdown-item" href="#"><?php echo $user->name; ?></a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item logout" href="#">Logout</a>
+					<a class="dropdown-item logout" href="">Logout</a>
 				</div>
 
 			</div>
 		
 
 		<?php } ?>
-		</form>
 	</div>
 </nav>
 
@@ -80,8 +77,8 @@
 			<div class="card w-100 mt-3 ml-3" style="height: fit-content;">
 				<div class="row no-gutters">
 					
-					<div class="col-auto mr-3">
-						<img src="//placehold.it/180" class="img-fluid" alt="">
+					<div class="col-auto mr-3 d-flex">
+						<img src="<?php echo base_url() . 'uploads/' . $item->thumbnail; ?>" class="img-fluid mt-auto mb-auto" alt="<?php echo $item->name; ?>" style="max-width:200px">
 					</div>
 
 					<div class="col">

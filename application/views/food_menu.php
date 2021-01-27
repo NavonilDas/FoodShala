@@ -3,101 +3,67 @@
 ?>
 <?php require_once 'header.php'; ?>
 
-	<style>
-		.avatar{
-			width:40px;
-			height:40px;
-			border-radius:50%;
-			background-color:#f6f6f6;
-			position:relative;
-		}
-	</style>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	<a class="navbar-brand" href="<?php echo base_url(); ?>">FoodShala</a>
-
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url().'orders'; ?>">My Orders</a>
-			</li>
-
-			<?php if($role === 'Resturant'){?>
-				<li class="nav-item">
-					<a class="nav-link" href="#">My </a>
-				</li>
-			<?php }?>
-
-		</ul>
-		<form class="form-inline my-2 my-lg-0">
-		<?php if ( $user === null ) { ?>
-			<button class="btn btn-light my-2 my-sm-0 login" type="button"><i class="fa fa-user"></i> Login</button>
-			<button class="btn btn-light my-2 my-sm-0 ml-2 signup" type="button"><i class="fa fa-user-plus"></i> Sign Up</button>
-		<?php } else { ?>
-			<button class="btn btn-light my-2 my-sm-0 cart" type="buttton"><i class="fa fa-shopping-cart"></i> Cart</button>
-			
-			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="m-auto"><?php echo $user->name[0]; ?></span>
-
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
-					<a class="dropdown-item" href="#"><?php echo $user->name; ?></a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item logout" href="#">Logout</a>
-				</div>
-
-			</div>
-		
-
-		<?php } ?>
-		</form>
-	</div>
-	</nav>
+<?php require_once 'navbar/customer.php'; ?>
 
 
-	<div class="row m-0 food-menu"></div>
+<div class="row m-0 food-menu mb-4"></div>
 
 	<script>
-	$('.login').click(function() {
-		window.location.href = "<?php echo base_url() . 'login'; ?>"
-	});
-	$('.logout').click(function() {
-		window.location.href = "<?php echo base_url() . 'login/logout'; ?>"
-	});
 	$('.signup').click(function() {
-		window.location.href = "<?php echo base_url() . 'register/customer'; ?>"
+		window.location.href = ""
 	});
 	$('.cart').click(function(event) {
 		event.preventDefault();
 		window.location.href = "<?php echo base_url() . 'cart/view'; ?>"
 	});
-	$.get("<?php echo base_url() . 'food/menu/0'; ?>", function(data, status){
-		const row = $('.food-menu');
-		if(data.length === 0){
-			row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');
-		}
-		for(var item of data){
-			row.append(`<div class="col-md-3 mt-3">
-			<div class="card">
-				<img class="card-img-top" src="<?php echo base_url().'uploads/'; ?>${item.thumbnail}" alt="Card image cap">
-				<div class="card-body d-flex">
-					<div class="flex-grow-1">
-						<h5 class="card-title">${item.name}</h5>
-						<p class="card-text">${item.price} Rs.</p>
-					</div>
-					<a href="<?php echo base_url().'cart/add/';?>${item.id}" class="btn btn-primary m-auto"><i class="fa fa-cart-plus"></i></a>
-				</div>
-			</div></div>`);
-		}
+	var onProgress = false,cur = 0;
+	function getData(){
+		onProgress = true;
+		$.get("<?php echo base_url() . 'food/menu/'; ?>"+cur, function(data, status){
+			const row = $('.food-menu');
+			if(cur == 0 && data.length === 0){
+				row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');
+			}
+			if(data.length == 0) return;
 
+			for(var item of data){
+				var out = '<div class="col-md-3 mt-3" style="min-width:251px;"><div class="card">';
+				out += `<img class="card-img-top" src="<?php echo base_url().'uploads/'; ?>${item.thumbnail}" alt="${item.name}">`;
+				out += `<div class="card-body"><h5 class="card-title">${item.name}</h5>`;
+				out += `<h6 class="card-subtitle mb-2 text-muted">By ${item.resturant}</h6><div class="d-flex">`;
+				out += `<div class="flex-grow-1"><p class="card-text">${item.price} Rs.</p></div>`;
+				if(typeof item.quantity === 'undefined' || isNaN(parseInt(item.quantity))){
+					out += `<a href="<?php echo base_url().'cart/add/';?>${item.id}" class="btn btn-primary m-auto"><i class="fa fa-cart-plus"></i></a>`;
+				}else{
+					if(+item.quantity === 1){					
+						out += `<a href="<?php echo base_url().'cart/delete/';?>${item.id}" class="btn btn-danger m-auto"><i class="fa fa-trash"></i></a>`;
+					}else{
+						out += `<a href="<?php echo base_url().'cart/quantity/';?>${item.id}/-1" class="btn btn-danger m-auto"><i class="fa fa-minus"></i></a>`;
+					}
+					out += `<span class="m-2 mt-auto mb-auto">${item.quantity}</span>`;
+					out += `<a href="<?php echo base_url().'cart/quantity/';?>${item.id}/1" class="btn btn-primary m-auto"><i class="fa fa-plus"></i></a>`;
+				}
+				out += 	'</div></div></div></div>';
+				row.append(out);
+			}
+			onProgress = false;
+			cur += 1;
+		});
+
+	}
+
+	getData();
+
+	window.addEventListener('scroll',function(event){
+		if(onProgress) return;
+		var scrollHeight = parseFloat(window.getComputedStyle(document.body).height.replace('px',''));
+		var scrollPos = window.innerHeight + window.scrollY;
+		if(((scrollHeight - 300) >= scrollPos) / scrollHeight == 0){
+			onProgress = true;
+			getData();
+		}
 	});
+
 	</script>
 </body>
 </html>
