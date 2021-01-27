@@ -44,9 +44,8 @@ class AddMenu extends CI_Controller {
 
 		if ( ! $this->upload->do_upload( 'thumbnail' ) ) {
 				$error = array( 'error' => $this->upload->display_errors() );
-
-				// $this->load->view('upload_form', $error);
 				print_r( $error );
+				// TODO: Handle Error
 		} else {
 			$this->load->model( 'Menu' );
 			$data               = $this->upload->data();

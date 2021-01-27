@@ -43,6 +43,27 @@ class Orders extends CI_Controller {
 
 	}
 
+	public function status( $id = -1, $status = 'Pending' ) {
+		$user = $this->session->userdata( 'user' );
+		$role = $this->session->userdata( 'role' );
+
+		if ( $user === null ) {
+			redirect( '/login' );
+			return true;
+		}
+
+		$this->load->model( 'OrderModel' );
+		$ret = $this->OrderModel->setStatus( $user->id, $id, $status );
+
+		if ( $ret === 401 ) {
+			// Show Unauthorized Message if user is not the creator
+			$err_msg = 'You don\'t Have permission to access this resource. To Visit Home <a href="' . base_url() . '">Click Here</a>';
+			show_error( $err_msg, 401, 'Unauthorized Access' );
+		} else {
+			redirect( '/orders' );
+		}
+
+	}
 	/*
 	// Following Code is REST API for fetching orders
 	public function customer( $pgNo = 0 ) {

@@ -11,6 +11,9 @@
 		background-color: #f6f6f6;
 		position: relative;
 	}
+	.h-fit{
+		height:fit-content;
+	}
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -77,6 +80,13 @@
 
 <div class="row" style="margin: 0 0 60px 0;">
 	<div class="col-md-6 my-orders">
+
+		<?php if ( count( $orders ) < 1 ) { ?>
+			<div class="alert alert-info m-2" role="alert">
+				No More Orders
+			</div>
+		<?php } ?>
+
 		<?php
 		foreach ( $orders as $item ) {
 			?>
@@ -90,17 +100,29 @@
 					<h6 class="card-subtitle mb-2 text-muted">Rs. <?php echo $item->price * $item->quantity; ?></h6>
 
 					<span>Quantity <?php echo $item->quantity; ?></span>
-					<div class="d-flex">
+					<div class="d-flex mt-2">
 						<h6 class="card-subtitle mb-2 text-muted mt-auto" data-time="<?php echo $item->created_at; ?>"></h6>
-						<?php if ( $item->status === 'Pending' ) { ?>
-							<a href="<?php echo base_url() . 'cart/delete/' . $item->id; ?>" class="btn btn-success ml-auto">Complete</a>
-							<a href="<?php echo base_url() . 'cart/delete/' . $item->id; ?>" class="btn btn-danger ml-2">Reject</a>
+						<?php
+						if ( $item->status === 'Pending' ) {
+							$front_url = base_url() . 'orders/status/' . $item->id . '/';
+							?>
+							<a href="<?php echo $front_url . 'Completed'; ?>" class="btn btn-success ml-auto h-fit">Complete</a>
+							<a href="<?php echo $front_url . 'Rejected'; ?>" class="btn btn-danger ml-2 h-fit">Reject</a>
 						<?php } ?>
 					</div>
 				</div>
 			</div>
 		<?php } ?>
 	</div>
+</div>
+
+<div class="d-flex mr-3 fixed-bottom">
+	<nav class="ml-auto">
+		<ul class="pagination">
+			<li class="page-item <?php echo ( $page_no <= 1 ) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $page_no - 1; ?>">Previous</a></li>
+			<li class="page-item <?php echo ( count( $orders ) < 15 ) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $page_no + 1; ?>">Next</a></li>
+		</ul>
+	</nav>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
