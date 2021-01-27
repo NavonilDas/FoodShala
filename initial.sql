@@ -90,3 +90,14 @@ CREATE TABLE cart(
 	FOREIGN KEY (user_id) REFERENCES user(id),
 	PRIMARY KEY(food_id,user_id)
 );
+
+CREATE TABLE (
+	id INT PRIMARYfood_order KEY AUTO_INCREMENT,
+	`food_id` INT NOT NULL,
+	`user_id` INT NOT NULL,
+	`status` ENUM('Pending','Completed','Rejected') NOT NULL DEFAULT 'Pending',
+	`quantity` int NOT NULL DEFAULT 1,
+	FOREIGN KEY (food_id) REFERENCES food(id),
+	FOREIGN KEY (user_id) REFERENCES user(id),
+	INDEX(status)
+);

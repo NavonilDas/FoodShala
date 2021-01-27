@@ -47,7 +47,7 @@ class Cart extends CI_Controller {
 
 		$this->load->model( 'CartModel' );
 		$this->CartModel->delete( $user->id, $id );
-		redirect('/cart/view');
+		redirect( '/cart/view' );
 	}
 
 	function quantity( $id = -1, $val = null ) {
@@ -64,7 +64,7 @@ class Cart extends CI_Controller {
 
 		$this->load->model( 'CartModel' );
 		$this->CartModel->changeQuantity( $user->id, $id, $val );
-		redirect('/cart/view');
+		redirect( '/cart/view' );
 	}
 
 	/**
@@ -77,10 +77,44 @@ class Cart extends CI_Controller {
 		}
 
 		$this->load->model( 'CartModel' );
-		$data         = array();
-		$data['cart'] = $this->CartModel->get( $user->id );
+
+		$checkout = $this->session->userdata( 'checkout' );
+		$data             = array();
+		$data['cart']     = $this->CartModel->get( $user->id );
+		$data['checkout'] = ( $checkout != NULL ) ? True : False;
+
+		$this->session->unset_userdata( 'checkout' );
 
 		$this->load->view( 'view_cart', $data );
 
+	}
+
+	public function checkout() {
+		$user = $this->_only_for_customer();
+
+		if ( $user === true ) {
+			return;
+		}
+
+		$this->load->model( 'CartModel' );
+		$this->load->model( 'OrderModel' );
+		$items  = $this->CartModel->get( $user->id );
+		$orders = array();
+		foreach ( $items as $obj ) {
+			array_push(
+				$orders,
+				array(
+					'food_id'  => $obj->food_id,
+					'user_id'  => $obj->user_id,
+					'quantity' => $obj->quantity,
+				)
+			);
+		}
+		if ( count( $orders ) > 0 ) {
+			$this->OrderModel->create( $orders );
+		}
+		$this->CartModel->delete_all( $user->id );
+		$this->session->set_userdata( array( 'checkout' => true ) );
+		redirect( '/cart/view' );
 	}
 }

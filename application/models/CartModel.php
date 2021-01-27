@@ -34,4 +34,11 @@ class CartModel extends CI_Model {
 			->where( 'food_id', $id )
 			->delete();
 	}
+
+	public function delete_all( $user_id ) {
+		$this->db
+			->from( 'cart' )
+			->where( 'user_id', $user_id )
+			->delete();
+	}
 }

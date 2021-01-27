@@ -1,7 +1,7 @@
 <?php
-	$user        = $this->session->userdata( 'user' );
-	$no_of_items = count( $cart );
-	$amount      = 0;
+	$user           = $this->session->userdata( 'user' );
+	$no_of_items    = count( $cart );
+	$amount         = 0;
 	$total_quantity = 0;
 ?>
 <?php require_once 'header.php'; ?>
@@ -17,7 +17,7 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	<a class="navbar-brand" href="<?php echo base_url(); ?>">FoodShala Cart</a>
+	<a class="navbar-brand" href="<?php echo base_url() . 'cart/view'; ?>">FoodShala Cart</a>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -52,6 +52,11 @@
 	</div>
 </nav>
 
+<?php if ( $checkout ) { ?>
+			<div class="alert alert-success m-2" role="alert">
+				Checkout Success
+			</div>
+<?php } ?>
 
 <div class="row m-0">
 	<div class="col-md-8 row p-3">
@@ -59,10 +64,10 @@
 			<div class="alert alert-primary m-2 w-100" role="alert" style="height:fit-content;">
 				Seems Your Cart is Empty!.
 			</div>
-		<?php
+			<?php
 		}
 		foreach ( $cart as $item ) {
-				$amount += $item->price * $item->quantity;
+				$amount         += $item->price * $item->quantity;
 				$total_quantity += $item->quantity;
 			?>
 
@@ -106,7 +111,7 @@
 			<h5 class="card-title">Subtotal</h5>
 			<h6 class="card-subtitle mb-2 text-muted"><?php echo $no_of_items; ?> items (<?php echo $total_quantity; ?> Quantity)</h6>
 			<p class="card-text"><?php echo $amount; ?> Rs.</p>
-			<button type="button" class="btn btn-block btn-success <?php echo $amount == 0 ? 'disabled' : ''; ?>">Checkout</button>
+			<a href="<?php echo base_url() . 'cart/checkout'; ?>" class="btn btn-block btn-success <?php echo $amount == 0 ? 'disabled' : ''; ?>">Checkout</a>
 			</div>
 		</div>
 	</div>
