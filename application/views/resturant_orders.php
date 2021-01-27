@@ -3,19 +3,6 @@
 ?>
 <?php require_once 'header.php'; ?>
 
-<style>
-	.avatar {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		background-color: #f6f6f6;
-		position: relative;
-	}
-	.h-fit{
-		height:fit-content;
-	}
-</style>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<a class="navbar-brand" href="<?php echo base_url(); ?>">FoodShala</a>
 
@@ -36,7 +23,6 @@
 
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
-			<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 			<?php if ( $user === null ) { ?>
 			<button class="btn btn-light my-2 my-sm-0 login" type="button"><i class="fa fa-user"></i> Login</button>
 			<button class="btn btn-light my-2 my-sm-0 ml-2 signup" type="button"><i class="fa fa-user-plus"></i> Sign

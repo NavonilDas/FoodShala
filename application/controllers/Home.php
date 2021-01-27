@@ -8,19 +8,19 @@ class Home extends CI_Controller {
 	public function index() {
 		$this->load->model( 'UserAuth' );
 		$user = $this->session->userdata( 'user' );
+		$role = $this->session->userdata( 'role' );
+
 		$data = array(
 			'role' => 'anonymous',
 		);
-		if ( $user !== null ) {
-			$type = $this->UserAuth->getUserRole( $user->id );
-			if ( $type !== null ) {
-				$data['role'] = $type->type;
-			}
+		if ( $role !== null ) {
+			$data['role'] = $role;
 		}
-		if ( $data['role'] === 'Resturant' ) {
+
+		if ( $role === 'Resturant' ) {
 			$this->load->view( 'resturant_menu', $data );
 		} else {
-			$this->load->view( 'food_menu', $data );
+			$this->load->view( 'customer/food_menu', $data );
 		}
 	}
 

@@ -18,7 +18,7 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="<?php echo base_url(); ?>">Home</span></a>
 			</li>
 
 			<li class="nav-item">
@@ -31,7 +31,7 @@
 			<a class="btn btn-light my-2 my-sm-0" href="<?php echo base_url() . 'login'; ?>"><i class="fa fa-user"></i> Login</a>
 			<a class="btn btn-light my-2 my-sm-0 ml-2" href="<?php echo base_url() . 'register/customer'; ?>"><i class="fa fa-user-plus"></i> Sign Up</a>
 		<?php } else { ?>
-			<button class="btn btn-light my-2 my-sm-0 cart" type="buttton"><i class="fa fa-shopping-cart"></i> Cart</button>
+			<a class="btn btn-light my-2 my-sm-0 cart" href="<?php echo base_url() . 'login'; ?>"><i class="fa fa-shopping-cart"></i> Cart</a>
 			
 			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="m-auto"><?php echo $user->name[0]; ?></span>

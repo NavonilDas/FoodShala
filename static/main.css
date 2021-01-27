@@ -1,0 +1,11 @@
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #f6f6f6;
+	position: relative;
+}
+
+.h-fit {
+	height: fit-content;
+}
