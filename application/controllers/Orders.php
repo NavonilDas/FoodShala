@@ -25,7 +25,7 @@ class Orders extends CI_Controller {
 			$orders         = $this->OrderModel->getById( $user->id, $pgNo - 1 );
 			$data['orders'] = $orders;
 
-			$this->load->view( 'customer_orders', $data );
+			$this->load->view( 'customer/customer_orders', $data );
 		} elseif ( $role === 'Resturant' ) {
 			$data['orders'] = array();
 			$status         = isset( $_GET['status'] ) ? $_GET['status'] : 'Pending';

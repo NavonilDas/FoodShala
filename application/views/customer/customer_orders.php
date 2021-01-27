@@ -1,9 +1,10 @@
 <?php
 	$user = $this->session->userdata( 'user' );
 ?>
-<?php require_once 'header.php'; ?>
 
-<?php require_once 'navbar/customer.php'; ?>
+<?php require_once __DIR__ . '/../header.php'; ?>
+
+<?php require_once __DIR__ . '/../navbar/customer.php'; ?>
 
 
 <h2 class="m-3">My Orders</h2>
