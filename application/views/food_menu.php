@@ -88,7 +88,7 @@
 						<h5 class="card-title">${item.name}</h5>
 						<p class="card-text">${item.price} Rs.</p>
 					</div>
-					<a href="<?php echo base_url().'delete/';?>${item.id}" class="btn btn-primary m-auto"><i class="fa fa-cart-plus"></i></a>
+					<a href="<?php echo base_url().'cart/add/';?>${item.id}" class="btn btn-primary m-auto"><i class="fa fa-cart-plus"></i></a>
 				</div>
 			</div></div>`);
 		}

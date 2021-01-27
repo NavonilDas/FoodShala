@@ -1,5 +1,8 @@
 <?php
-	$user = $this->session->userdata( 'user' );
+	$user        = $this->session->userdata( 'user' );
+	$no_of_items = count( $cart );
+	$amount      = 0;
+	$total_quantity = 0;
 ?>
 <?php require_once 'header.php'; ?>
 
@@ -49,9 +52,19 @@
 	</div>
 </nav>
 
+
 <div class="row m-0">
 	<div class="col-md-8 row p-3">
-		<?php foreach ( $cart as $item ) { ?>
+		<?php if ( $no_of_items === 0 ) { ?>
+			<div class="alert alert-primary m-2 w-100" role="alert" style="height:fit-content;">
+				Seems Your Cart is Empty!.
+			</div>
+		<?php
+		}
+		foreach ( $cart as $item ) {
+				$amount += $item->price * $item->quantity;
+				$total_quantity += $item->quantity;
+			?>
 
 			<div class="card w-100 mt-3 ml-3" style="height: fit-content;">
 				<div class="row no-gutters">
@@ -69,8 +82,8 @@
 								
 								<span>Quantity <?php echo $item->quantity; ?></span>
 
-								<a href="<?php echo base_url() . 'cart/quantity/'.$item->id.'/1' ?>" type="button" class="btn btn-primary mr-2 ml-2 <?php echo ( $item->quantity == 20 ) ? 'disabled' : ''; ?>""><i class="fa fa-plus"></i></a>
-								<a href="<?php echo base_url() . 'cart/quantity/'.$item->id.'/-1' ?>" type="button" class="btn btn-primary <?php echo ( $item->quantity == 1 ) ? 'disabled' : ''; ?>"><i class="fa fa-minus"></i></a>
+								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/1'; ?>" type="button" class="btn btn-primary mr-2 ml-2 <?php echo ( $item->quantity == 20 ) ? 'disabled' : ''; ?>""><i class="fa fa-plus"></i></a>
+								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/-1'; ?>" type="button" class="btn btn-primary <?php echo ( $item->quantity == 1 ) ? 'disabled' : ''; ?>"><i class="fa fa-minus"></i></a>
 							</div>
 		
 							<div class="d-flex">
@@ -91,9 +104,9 @@
 		<div class="card">
 			<div class="card-body">
 			<h5 class="card-title">Subtotal</h5>
-			<h6 class="card-subtitle mb-2 text-muted">6 items</h6>
-			<p class="card-text">1000 Rs.</p>
-			<button type="button" class="btn btn-block btn-success">Checkout</button>
+			<h6 class="card-subtitle mb-2 text-muted"><?php echo $no_of_items; ?> items (<?php echo $total_quantity; ?> Quantity)</h6>
+			<p class="card-text"><?php echo $amount; ?> Rs.</p>
+			<button type="button" class="btn btn-block btn-success <?php echo $amount == 0 ? 'disabled' : ''; ?>">Checkout</button>
 			</div>
 		</div>
 	</div>

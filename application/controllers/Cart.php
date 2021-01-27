@@ -45,11 +45,13 @@ class Cart extends CI_Controller {
 			return;
 		}
 
-		echo $id;
+		$this->load->model( 'CartModel' );
+		$this->CartModel->delete( $user->id, $id );
+		redirect('/cart/view');
 	}
 
-	function quantity( $id = -1, $val = -1 ) {
-		if ( $id == -1 || $val == -1 ) {
+	function quantity( $id = -1, $val = null ) {
+		if ( $id == -1 || $val == null ) {
 			redirect( '/cart/view' );
 			return;
 		}
@@ -59,8 +61,10 @@ class Cart extends CI_Controller {
 		if ( $user === true ) {
 			return;
 		}
+
 		$this->load->model( 'CartModel' );
-		$this->CartMode->changeQuantity( $user->id, $id, $val );
+		$this->CartModel->changeQuantity( $user->id, $id, $val );
+		redirect('/cart/view');
 	}
 
 	/**
