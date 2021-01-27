@@ -26,6 +26,10 @@
 				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 			</li>
 
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url().'orders'; ?>">My Orders</a>
+			</li>
+
 			<?php if($role === 'Resturant'){?>
 				<li class="nav-item">
 					<a class="nav-link" href="#">My </a>

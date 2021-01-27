@@ -28,7 +28,13 @@
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
 			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url().'orders'; ?>">My Orders</a>
+			</li>
+
 		</ul>
+
 		<form class="form-inline my-2 my-lg-0">
 		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 		<?php if ( $user === null ) { ?>
@@ -87,7 +93,7 @@
 								
 								<span>Quantity <?php echo $item->quantity; ?></span>
 
-								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/1'; ?>" type="button" class="btn btn-primary mr-2 ml-2 <?php echo ( $item->quantity == 20 ) ? 'disabled' : ''; ?>""><i class="fa fa-plus"></i></a>
+								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/1'; ?>" type="button" class="btn btn-primary mr-2 ml-2 <?php echo ( $item->quantity == 20 ) ? 'disabled' : ''; ?>"><i class="fa fa-plus"></i></a>
 								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/-1'; ?>" type="button" class="btn btn-primary <?php echo ( $item->quantity == 1 ) ? 'disabled' : ''; ?>"><i class="fa fa-minus"></i></a>
 							</div>
 		
@@ -117,3 +123,5 @@
 	</div>
 </div>
 
+</body>
+</html>
