@@ -1,5 +1,4 @@
-<?php require_once 'header.php'; ?>
-
+<?php require_once __DIR__ . '/../header.php'; ?>
 
 <div class="container">
 	<div class="col-md-6 mt-3 ml-auto mr-auto">

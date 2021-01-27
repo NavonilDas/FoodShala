@@ -21,7 +21,7 @@ class Register extends CI_Controller {
 		$data['prefer'] = $this->PreferenceModel->getPreferences();
 
 		if ( $this->form_validation->run() == false ) {
-			$this->load->view( 'register_customer', $data );
+			$this->load->view( 'customer/register_customer', $data );
 		} else {
 			$this->load->model( 'UserAuth' );
 			$pref = $this->input->post( 'preference' );
