@@ -34,12 +34,11 @@
 
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
-		<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
 		<?php if ( $user === null ) { ?>
 			<button class="btn btn-light my-2 my-sm-0 login" type="button"><i class="fa fa-user"></i> Login</button>
 			<button class="btn btn-light my-2 my-sm-0 ml-2 signup" type="button"><i class="fa fa-user-plus"></i> Sign Up</button>
 		<?php } else { ?>
-			<button class="btn btn-light my-2 my-sm-0 cart" type="submit"><i class="fa fa-shopping-cart"></i> Cart</button>
+			<button class="btn btn-light my-2 my-sm-0 cart" type="buttton"><i class="fa fa-shopping-cart"></i> Cart</button>
 			
 			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="m-auto"><?php echo $user->name[0]; ?></span>
@@ -71,8 +70,9 @@
 	$('.signup').click(function() {
 		window.location.href = "<?php echo base_url() . 'register/customer'; ?>"
 	});
-	$('.cart').click(function() {
-		window.location.href = "<?php echo base_url() . 'cart'; ?>"
+	$('.cart').click(function(event) {
+		event.preventDefault();
+		window.location.href = "<?php echo base_url() . 'cart/view'; ?>"
 	});
 	$.get("<?php echo base_url() . 'food/menu/0'; ?>", function(data, status){
 		const row = $('.food-menu');

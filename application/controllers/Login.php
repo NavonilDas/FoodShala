@@ -22,15 +22,23 @@ class Login extends CI_Controller {
 				$data['error'] = 'Invalid Email or Password';
 				$this->load->view( 'login', $data );
 			} else {
-				$this->session->set_userdata( array( 'user' => $user ) );
+				$role = $this->UserAuth->getUserRole( $user->id );
+
+				$this->session->set_userdata(
+					array(
+						'user' => $user,
+						'role' => ( $role === null ) ? 'anonymous' : $role->type,
+					)
+				);
 				redirect( '/' );
 			}
 		}
 	}
 
 	public function logout() {
-		$this->session->unset_userdata('user');  
-		redirect('/');
+		$this->session->unset_userdata( 'user' );
+		$this->session->unset_userdata( 'role' );
+		redirect( '/' );
 	}
 
 }
