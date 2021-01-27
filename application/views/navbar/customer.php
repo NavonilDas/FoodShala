@@ -1,13 +1,3 @@
-<style>
-	.avatar{
-		width:40px;
-		height:40px;
-		border-radius:50%;
-		background-color:#f6f6f6;
-		position:relative;
-	}
-</style>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<a class="navbar-brand" href="<?php echo base_url(); ?>">FoodShala</a>
 
@@ -31,7 +21,9 @@
 			<a class="btn btn-light my-2 my-sm-0" href="<?php echo base_url() . 'login'; ?>"><i class="fa fa-user"></i> Login</a>
 			<a class="btn btn-light my-2 my-sm-0 ml-2" href="<?php echo base_url() . 'register/customer'; ?>"><i class="fa fa-user-plus"></i> Sign Up</a>
 		<?php } else { ?>
-			<a class="btn btn-light my-2 my-sm-0 cart" href="<?php echo base_url() . 'login'; ?>"><i class="fa fa-shopping-cart"></i> Cart</a>
+			<a class="btn btn-light my-2 my-sm-0 cart" href="<?php echo base_url() . 'cart/view'; ?>">
+				<i class="fa fa-shopping-cart"></i> Cart
+			</a>
 			
 			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="m-auto"><?php echo $user->name[0]; ?></span>

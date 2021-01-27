@@ -6,7 +6,6 @@ class Cart extends CI_Controller {
 	private function _only_for_customer() {
 		$user = $this->session->userdata( 'user' );
 		$role = $this->session->userdata( 'role' );
-
 		if ( $user === null ) {
 			redirect( '/login' );
 			return true;
@@ -87,7 +86,7 @@ class Cart extends CI_Controller {
 
 		$this->session->unset_userdata( 'checkout' );
 
-		$this->load->view( 'view_cart', $data );
+		$this->load->view( 'customer/view_cart', $data );
 
 	}
 

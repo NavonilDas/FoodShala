@@ -3,62 +3,16 @@
 	$no_of_items    = count( $cart );
 	$amount         = 0;
 	$total_quantity = 0;
+	$title = 'FoodShala Cart';
 ?>
-<?php require_once 'header.php'; ?>
+<?php require_once __DIR__ . '/../header.php'; ?>
 
-<style>
-	.avatar{
-		width:40px;
-		height:40px;
-		border-radius:50%;
-		background-color:#f6f6f6;
-		position:relative;
-	}
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	<a class="navbar-brand" href="<?php echo base_url() . 'cart/view'; ?>">FoodShala Cart</a>
-
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url() . 'orders'; ?>">My Orders</a>
-			</li>
-
-		</ul>
-
-		<?php if ( $user === null ) { ?>
-			<button class="btn btn-light my-2 my-sm-0 login" type="button"><i class="fa fa-user"></i> Login</button>
-			<button class="btn btn-light my-2 my-sm-0 ml-2 signup" type="button"><i class="fa fa-user-plus"></i> Sign Up</button>
-		<?php } else { ?>
-			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="m-auto"><?php echo $user->name[0]; ?></span>
-
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
-					<a class="dropdown-item" href="#"><?php echo $user->name; ?></a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item logout" href="">Logout</a>
-				</div>
-
-			</div>
-		
-
-		<?php } ?>
-	</div>
-</nav>
+<?php require_once __DIR__ . '/../navbar/customer.php'; ?>
 
 <?php if ( $checkout ) { ?>
-			<div class="alert alert-success m-2" role="alert">
-				Checkout Success
-			</div>
+	<div class="alert alert-success m-2" role="alert">
+		Checkout Success
+	</div>
 <?php } ?>
 
 <div class="row m-0">
