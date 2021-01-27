@@ -17,16 +17,23 @@ class Orders extends CI_Controller {
 
 		$this->load->model( 'OrderModel' );
 
-		$data = array( 'orders' => array() );
+		$data            = array( 'orders' => array() );
 		$data['page_no'] = $pgNo;
-		
+
 		if ( $role === 'Customer' ) {
 			// View Customer
 			$orders         = $this->OrderModel->getById( $user->id, $pgNo - 1 );
 			$data['orders'] = $orders;
-			
+
 			$this->load->view( 'customer_orders', $data );
 		} elseif ( $role === 'Resturant' ) {
+			$data['orders'] = array();
+			$status         = isset( $_GET['status'] ) ? $_GET['status'] : 'Pending';
+			$data['status'] = $status;
+			$orders         = $this->OrderModel->getByResturnant( $user->id, $pgNo - 1, $status );
+			$data['orders'] = $orders;
+
+			$this->load->view( 'resturant_orders', $data );
 
 		} else {
 			redirect( '/401' );
