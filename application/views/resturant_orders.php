@@ -39,7 +39,6 @@
 			<button class="btn btn-light my-2 my-sm-0 ml-2 signup" type="button"><i class="fa fa-user-plus"></i> Sign
 				Up</button>
 			<?php } else { ?>
-				<a href="<?php echo base_url() . '/cart/view'; ?>" class="btn btn-light my-2 my-sm-0 cart"><i class="fa fa-shopping-cart"></i> Cart</a>
 				
 				<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false">

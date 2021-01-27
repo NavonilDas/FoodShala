@@ -13,7 +13,9 @@ class Cart extends CI_Controller {
 		}
 
 		if ( $role !== 'Customer' ) {
-			redirect( '/401' );
+			// Show Unauthorized Message if user is not customer
+			$err_msg = 'You don\'t Have permission to access this resource. To Visit Home <a href="' . base_url() . '">Click Here</a>';
+			show_error( $err_msg, 401, 'Unauthorized Access' );
 			return true;
 		}
 		return $user;
@@ -78,10 +80,10 @@ class Cart extends CI_Controller {
 
 		$this->load->model( 'CartModel' );
 
-		$checkout = $this->session->userdata( 'checkout' );
+		$checkout         = $this->session->userdata( 'checkout' );
 		$data             = array();
 		$data['cart']     = $this->CartModel->get( $user->id );
-		$data['checkout'] = ( $checkout != NULL ) ? True : False;
+		$data['checkout'] = ( $checkout != null ) ? true : false;
 
 		$this->session->unset_userdata( 'checkout' );
 
