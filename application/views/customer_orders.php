@@ -9,9 +9,9 @@
 <h2 class="m-3">My Orders</h2>
 
 <?php if ( count( $orders ) < 1 ) { ?>
-			<div class="alert alert-info m-2" role="alert">
-				No More Orders
-			</div>
+	<div class="alert alert-info m-2" role="alert">
+		No More Orders
+	</div>
 <?php } ?>
 
 <div class="row" style="margin: 0 0 60px 0;">
@@ -25,6 +25,7 @@
 				$badge = 'danger';
 			}
 			?>
+
 			<div class="card m-3">
 				<div class="card-block px-2 p-3">
 					<h6 class="card-subtitle mb-2 text-muted">Order ID: <?php echo $item->id; ?></h6>
@@ -39,19 +40,25 @@
 					</div>
 				</div>
 			</div>
-		<?php } ?>
+
+			<?php } ?>
 	</div>
 </div>
 
 <div class="d-flex mr-3 fixed-bottom">
 	<nav class="ml-auto">
 		<ul class="pagination">
-			<li class="page-item <?php echo ( $page_no <= 1 ) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $page_no - 1; ?>">Previous</a></li>
-			<li class="page-item <?php echo ( count($orders) < 15 ) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $page_no + 1; ?>">Next</a></li>
+			<li class="page-item <?php echo ( $page_no <= 1 ) ? 'disabled' : ''; ?>">
+				<a class="page-link" href="?page=<?php echo $page_no - 1; ?>">Previous</a>
+			</li>
+			
+			<li class="page-item <?php echo ( count($orders) < 15 ) ? 'disabled' : ''; ?>">
+				<a class="page-link" href="?page=<?php echo $page_no + 1; ?>">Next</a>
+			</li>
+
 		</ul>
 	</nav>
 </div>
 
 </body>
-
 </html>

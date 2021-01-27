@@ -22,7 +22,7 @@ class AddMenu extends CI_Controller {
 
 		$data           = array();
 		$data['prefer'] = $this->PreferenceModel->getPreferences();
-		$this->load->view( 'add_menu_item', $data );
+		$this->load->view( 'resturant/add_menu_item', $data );
 	}
 
 	/**
