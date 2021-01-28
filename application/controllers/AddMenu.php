@@ -47,7 +47,8 @@ class AddMenu extends CI_Controller {
 				print_r( $error );
 				// TODO: Handle Error
 		} else {
-			$this->load->model( 'Menu' );
+			$this->load->model( 'MenuModel' );
+
 			$data               = $this->upload->data();
 			$menu               = array();
 			$menu['name']       = $this->input->post( 'name' );
@@ -55,7 +56,7 @@ class AddMenu extends CI_Controller {
 			$menu['created_by'] = $user->id;
 			$menu['type']       = $this->input->post( 'preference' );
 			$menu['thumbnail']  = $data['file_name'];
-			$this->Menu->create( $menu );
+			$this->MenuModel->create( $menu );
 			redirect( '/' );
 		}
 	}
@@ -68,8 +69,8 @@ class AddMenu extends CI_Controller {
 			show_error( $err_msg, 401, 'Unauthorized Access' );
 			return;
 		}
-		$this->load->model( 'Menu' );
-		$this->Menu->delete( $id, $user->id );
+		$this->load->model( 'MenuModel' );
+		$this->MenuModel->delete( $id, $user->id );
 		redirect( '/' );
 	}
 
@@ -85,8 +86,8 @@ class AddMenu extends CI_Controller {
 			return;
 		}
 
-		$this->load->model( 'Menu' );
+		$this->load->model( 'MenuModel' );
 		header( 'Content-Type: application/json' );
-		echo json_encode( $this->Menu->getMyItems( $user->id, $pgNo ) );
+		echo json_encode( $this->MenuModel->getMyItems( $user->id, $pgNo ) );
 	}
 }

@@ -25,10 +25,10 @@ class Home extends CI_Controller {
 	}
 
 	public function menu_items( $pgNo = 0 ) {
-		$this->load->model( 'Menu' );
+		$this->load->model( 'MenuModel' );
 		header( 'Content-Type: application/json' );
 		$user    = $this->session->userdata( 'user' );
 		$user_id = ( $user !== null ) ? $user->id : null;
-		echo json_encode( $this->Menu->getItems( $user_id, $pgNo ) );
+		echo json_encode( $this->MenuModel->getItems( $user_id, $pgNo ) );
 	}
 }
