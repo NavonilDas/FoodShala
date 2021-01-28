@@ -7,7 +7,7 @@
 				Add Menu Item
 			</div>
 			<div class="card-body">
-				<form action="<?php echo base_url() . 'addmenu/add'; ?>" method="post" enctype="multipart/form-data">
+				<form action="<?php echo base_url() . 'menu/add'; ?>" method="post" enctype="multipart/form-data">
 
 					<div class="form-group">
 						<label for="Name">Name *</label>

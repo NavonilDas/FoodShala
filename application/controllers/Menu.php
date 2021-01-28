@@ -1,7 +1,7 @@
 <?php
 defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
 
-class AddMenu extends CI_Controller {
+class Menu extends CI_Controller {
 
 	/**
 	 */

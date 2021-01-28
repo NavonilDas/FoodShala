@@ -21,25 +21,28 @@
 
 		</ul>
 
-		<?php if ( $user === null ) { ?>
-			<a class="btn btn-light my-2 my-sm-0" href="<?php echo base_url() . 'login'; ?>"><i class="fa fa-user"></i> Login</a>
-			<a class="btn btn-light my-2 my-sm-0 ml-2" href="<?php echo base_url() . 'register/customer'; ?>"><i class="fa fa-user-plus"></i> Sign Up</a>
-		<?php } else { ?>
-			<a class="btn btn-light my-2 my-sm-0 cart" href="<?php echo base_url() . 'cart/view'; ?>">
-				<i class="fa fa-shopping-cart"></i> Cart
-			</a>
-			
-			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="m-auto"><?php echo $user->name[0]; ?></span>
+		<div class="d-flex">
+			<?php if ( $user === null ) { ?>
+				<a class="btn btn-light my-2 my-sm-0" href="<?php echo base_url() . 'login'; ?>"><i class="fa fa-user"></i> Login</a>
+				<a class="btn btn-light my-2 my-sm-0 ml-2" href="<?php echo base_url() . 'register/customer'; ?>"><i class="fa fa-user-plus"></i> Sign Up</a>
+			<?php } else { ?>
+				<a class="btn btn-light my-2 my-sm-0 cart" href="<?php echo base_url() . 'cart/view'; ?>">
+					<i class="fa fa-shopping-cart"></i> Cart
+				</a>
+				
+				<div class="avatar ml-2 mt-auto mb-auto d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="m-auto"><?php echo $user->name[0]; ?></span>
 
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
-					<a class="dropdown-item" href="#"><?php echo $user->name; ?></a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item logout" href="<?php echo base_url() . 'login/logout'; ?>">Logout</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
+						<a class="dropdown-item" href="#"><?php echo $user->name; ?></a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item logout" href="<?php echo base_url() . 'login/logout'; ?>">Logout</a>
+					</div>
+
 				</div>
+			
+			<?php } ?>
+		</div>
 
-			</div>
-		
-		<?php } ?>
 	</div>
 </nav>

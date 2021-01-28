@@ -26,8 +26,14 @@
 				<a class="nav-link" href="<?php echo base_url() . 'orders'; ?>">View Orders</a>
 			</li>
 
-		</ul>			
-			<div class="avatar ml-2 d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+		</ul>
+
+		<div class="d-flex">
+			<a class="btn btn-light my-2 my-sm-0 cart" href="<?php echo base_url() . 'menu'; ?>">
+					<i class="fa fa-utensils"></i> Add Item
+			</a>			
+
+			<div class="avatar ml-2 mt-auto mb-auto d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">
 				<span class="m-auto">
 					<?php echo $user->name[0]; ?>
@@ -42,5 +48,7 @@
 				</div>
 
 			</div>
+		</div>
+
 	</div>
 </nav>

@@ -14,12 +14,9 @@ if ( $user === null || $role !== 'Resturant' ) {
 
 	<script>
 	$('.addItem').click(function() {
-		window.location.href = "<?php echo base_url() . 'addmenu'; ?>";
+		window.location.href = "<?php echo base_url() . 'menu'; ?>";
 	});
-	$('.logout').click(function() {
-		window.location.href = "<?php echo base_url() . 'login/logout'; ?>"
-	});
-	$.get("<?php echo base_url() . 'addmenu/list'; ?>", function(data, status){
+	$.get("<?php echo base_url() . 'menu/list'; ?>", function(data, status){
 		const row = $('.food-menu');
 		if(data.length === 0){
 			row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');

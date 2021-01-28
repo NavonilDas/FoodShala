@@ -53,6 +53,5 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['delete/(:num)'] = 'addmenu/delete/$1';
+$route['delete/(:num)'] = 'menu/delete/$1';
 $route['food/menu/(:num)'] = 'home/menu_items/$1';
-// $route['cart/quantity/(:num)/(:num)'] = 'home/quantity/$1/$2';
