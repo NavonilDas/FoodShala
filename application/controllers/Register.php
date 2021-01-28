@@ -65,8 +65,20 @@ class Register extends CI_Controller {
 			// Insert new user into DB.
 			$this->UserAuth->create( $user );
 
-			// Load Created Account View.
-			$this->load->view( 'account_created' );
+			// Get Database Errors and Show them
+			$erros = $this->db->error();
+
+			if ( isset( $erros['code'] ) && $erros['code'] === 1062 ) {
+				// Show Duplicate Error.
+				$message = 'Error Phone Number or Email already in use.<a href="' . base_url() . 'register/customer">Click here to go back</a>';
+				show_error( $message, 400, 'Bad Request' );
+			} elseif ( isset( $erros['code'] ) && $erros['code'] !== 0 ) {
+				// Show Database Error.
+				show_error( $erros['message'], 500, 'Database Error' );
+			} else {
+				// Load Created Account View.
+				$this->load->view( 'account_created' );
+			}
 		}
 	}
 
@@ -102,8 +114,21 @@ class Register extends CI_Controller {
 			// insert new user to DB.
 			$this->UserAuth->create( $user );
 
-			// Show Account Created View
-			$this->load->view( 'account_created' );
+			// Get Database Errors and Show them
+			$erros = $this->db->error();
+
+			if ( isset( $erros['code'] ) && $erros['code'] === 1062 ) {
+				// Show Duplicate Error.
+				$message = 'Error Phone Number or Email already in use.<a href="' . base_url() . 'register/customer">Click here to go back</a>';
+				show_error( $message, 400, 'Bad Request' );
+			} elseif ( isset( $erros['code'] ) && $erros['code'] !== 0 ) {
+				// Show Database Error.
+				show_error( $erros['message'], 500, 'Database Error' );
+			} else {
+				// Load Created Account View.
+				$this->load->view( 'account_created' );
+			}
 		}
 	}
+
 }
