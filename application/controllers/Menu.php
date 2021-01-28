@@ -97,7 +97,7 @@ class Menu extends CI_Controller {
 	public function delete( $id = -1 ) {
 		// Get user From session.
 		$user = $this->session->userdata( 'user' );
-		if ( $user === null || $id == -1) {
+		if ( $user === null || $id == -1 ) {
 			// Show Unauthorized Message if user is not the creator
 			$err_msg = 'You don\'t Have permission to access this resource. To Visit Home <a href="' . base_url() . '">Click Here</a>';
 			show_error( $err_msg, 401, 'Unauthorized Access' );
@@ -151,11 +151,12 @@ class Menu extends CI_Controller {
 		header( 'Content-Type: application/json' );
 
 		// Get user Object from session
-		$user    = $this->session->userdata( 'user' );
+		$user = $this->session->userdata( 'user' );
 		// Get user id if user is logged in else make it null
 		$user_id = ( $user !== null ) ? $user->id : null;
+		$pref    = ( $user !== null ) ? $user->preference : null;
 
 		// Print the json array of menu items
-		echo json_encode( $this->MenuModel->getItems( $user_id, $pgNo ) );
+		echo json_encode( $this->MenuModel->getItems( $user_id, $pgNo, $pref ) );
 	}
 }

@@ -15,7 +15,7 @@
 		$.get("<?php echo base_url() . 'food/menu/'; ?>"+cur, function(data, status){
 			const row = $('.food-menu');
 			if(cur == 0 && data.length === 0){
-				row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');
+				row.append('<div class="alert alert-primary m-2" role="alert">No Food Items available!</div>');
 			}
 			if(data.length == 0) return;
 

@@ -39,12 +39,12 @@
 					<?php echo $user->name[0]; ?>
 				</span>
 
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left:-150px">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="#">
 						<?php echo $user->name; ?>
 					</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item logout" href="<?php echo base_url() . 'login/logout'; ?>">Logout</a>
+					<a class="dropdown-item logout" href="<?php echo base_url() . 'login/logout'; ?>"  onclick="event.stopPropagation()">Logout</a>
 				</div>
 
 			</div>

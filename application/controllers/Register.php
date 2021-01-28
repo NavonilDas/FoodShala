@@ -66,7 +66,7 @@ class Register extends CI_Controller {
 			$this->UserAuth->create( $user );
 
 			// Load Created Account View.
-			// $this->load->view( 'account_created' );
+			$this->load->view( 'account_created' );
 		}
 	}
 

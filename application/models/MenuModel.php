@@ -29,7 +29,7 @@ class MenuModel extends CI_Model {
 	 *
 	 * @return array Array of Food items
 	 */
-	public function getItems( $userid, $pgNo = 0 ) {
+	public function getItems( $userid, $pgNo = 0, $preference ) {
 		$items_per_page = 12;
 
 		if ( $userid !== null ) {
@@ -39,6 +39,7 @@ class MenuModel extends CI_Model {
 					->from( 'food' )
 					->join( 'cart', "food.id = cart.food_id AND cart.user_id = $userid", 'left' )
 					->join( 'user', 'food.created_by = user.id' )
+					->where( 'food.type', $preference )
 					->limit( $items_per_page, $items_per_page * $pgNo )
 					->get()
 					->result();

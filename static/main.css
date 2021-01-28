@@ -6,6 +6,16 @@
 	position: relative;
 }
 
+.avatar .dropdown-menu {
+	left: -121px;
+}
+
 .h-fit {
 	height: fit-content;
+}
+
+@media only screen and (max-width: 990px) {
+	.avatar .dropdown-menu {
+		left: 0;
+	}
 }
