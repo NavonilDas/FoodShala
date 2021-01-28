@@ -33,7 +33,7 @@ class Orders extends CI_Controller {
 			$orders         = $this->OrderModel->getByResturnant( $user->id, $pgNo - 1, $status );
 			$data['orders'] = $orders;
 
-			$this->load->view( 'resturant_orders', $data );
+			$this->load->view( 'resturant/resturant_orders', $data );
 
 		} else {
 			// Show Unauthorized Message if user is not defined

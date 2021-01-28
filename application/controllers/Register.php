@@ -51,7 +51,7 @@ class Register extends CI_Controller {
 		// load preference
 
 		if ( $this->form_validation->run() == false ) {
-			$this->load->view( 'register_resturant', $data );
+			$this->load->view( 'resturant/register_resturant', $data );
 		} else {
 			$this->load->model( 'UserAuth' );
 
