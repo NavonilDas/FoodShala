@@ -1,3 +1,7 @@
+<?php
+	$current_menu = isset( $current_menu ) ? $current_menu : 'home';
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<a class="navbar-brand" href="<?php echo base_url(); ?>">FoodShala</a>
 
@@ -7,11 +11,11 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
+			<li class="nav-item <?php echo ( $current_menu === 'home' ) ? 'active' : ''; ?>">
 				<a class="nav-link" href="<?php echo base_url(); ?>">Home</span></a>
 			</li>
 
-			<li class="nav-item">
+			<li class="nav-item <?php echo ( $current_menu === 'orders' ) ? 'active' : ''; ?>">
 				<a class="nav-link" href="<?php echo base_url().'orders'; ?>">My Orders</a>
 			</li>
 

@@ -4,6 +4,7 @@
 	$amount         = 0;
 	$total_quantity = 0;
 	$title = 'FoodShala Cart';
+	$current_menu = 'cart';
 ?>
 <?php require_once __DIR__ . '/../header.php'; ?>
 

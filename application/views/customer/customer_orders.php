@@ -1,5 +1,6 @@
 <?php
 	$user = $this->session->userdata( 'user' );
+	$current_menu = 'orders';
 ?>
 
 <?php require_once __DIR__ . '/../header.php'; ?>
