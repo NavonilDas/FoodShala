@@ -1,6 +1,12 @@
 <?php
 defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
 
+/**
+ * Menu Model Class: For the food_menu table
+ *
+ * @version 0.1.0
+ * @author Navonil Das
+ */
 class Menu extends CI_Controller {
 
 	/**
@@ -89,5 +95,13 @@ class Menu extends CI_Controller {
 		$this->load->model( 'MenuModel' );
 		header( 'Content-Type: application/json' );
 		echo json_encode( $this->MenuModel->getMyItems( $user->id, $pgNo ) );
+	}
+
+	public function menu_items( $pgNo = 0 ) {
+		$this->load->model( 'MenuModel' );
+		header( 'Content-Type: application/json' );
+		$user    = $this->session->userdata( 'user' );
+		$user_id = ( $user !== null ) ? $user->id : null;
+		echo json_encode( $this->MenuModel->getItems( $user_id, $pgNo ) );
 	}
 }
