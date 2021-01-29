@@ -84,10 +84,20 @@ class Cart extends CI_Controller {
 		}
 		// Load Model & delete item
 		$this->load->model( 'CartModel' );
-		$this->CartModel->delete( $user->id, $id );
 
-		// Redirect Back to cart
-		redirect( '/cart/view' );
+		// Set Content Type as JSON
+		header( 'Content-Type: application/json' );
+
+		// catch databse errors.
+		try {
+			$this->CartModel->delete( $user->id, $id );
+			// send status done.
+			echo json_encode( array( 'done' => true ) );
+		} catch ( \Exception $th ) {
+
+			// send datbase error.
+			echo json_encode( array( 'error' => $th->getMessage() ) );
+		}
 	}
 
 	/**

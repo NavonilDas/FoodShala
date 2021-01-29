@@ -29,7 +29,7 @@
 					out += `<a href="<?php echo base_url() . 'cart/add/'; ?>${item.id}" class="btn btn-primary m-auto"><i class="fa fa-cart-plus"></i></a>`;
 				}else{
 					if(+item.quantity === 1){					
-						out += `<a href="<?php echo base_url() . 'cart/delete/'; ?>${item.id}" class="btn btn-danger m-auto"><i class="fa fa-trash"></i></a>`;
+						out += `<button class="btn btn-danger m-auto" onclick="deleteCart('<?php echo base_url(); ?>',${item.id})"><i class="fa fa-trash"></i></button>`;
 					}else{
 						out += `<a href="<?php echo base_url() . 'cart/quantity/'; ?>${item.id}/-1" class="btn btn-danger m-auto"><i class="fa fa-minus"></i></a>`;
 					}
@@ -58,5 +58,7 @@
 	});
 
 	</script>
+
+	<script src="<?php echo base_url().'static/main.js'?>"></script>
 </body>
 </html>

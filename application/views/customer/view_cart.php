@@ -3,8 +3,8 @@
 	$no_of_items    = count( $cart );
 	$amount         = 0;
 	$total_quantity = 0;
-	$title = 'FoodShala Cart';
-	$current_menu = 'cart';
+	$title          = 'FoodShala Cart';
+	$current_menu   = 'cart';
 ?>
 <?php require_once __DIR__ . '/../header.php'; ?>
 
@@ -50,7 +50,10 @@
 							</div>
 		
 							<div class="d-flex">
-								<a href="<?php echo base_url() . 'cart/delete/' . $item->id; ?>" class="btn btn-danger ml-auto">Delete</a>
+								<?php
+									$delete_param = '"' . base_url() . '",' . $item->id;
+								?>
+								<button onclick="deleteCart('<?php echo base_url(); ?>',<?php echo $item->id?>)" class="btn btn-danger ml-auto">Delete</button>
 							</div>
 		
 						</div>
@@ -74,6 +77,8 @@
 		</div>
 	</div>
 </div>
+
+<script src="<?php echo base_url().'static/main.js'?>"></script>
 
 </body>
 </html>

@@ -31,16 +31,16 @@ class CartModel extends CI_Model {
 	public function get( $user_id ) {
 		// Get The List of cart items from DB.
 		return $this->db
-					->from('cart')
-					->join('food','food.id =  cart.food_id')
-					->where('cart.user_id',$user_id)
+					->from( 'cart' )
+					->join( 'food', 'food.id =  cart.food_id' )
+					->where( 'cart.user_id', $user_id )
 					->get()
 					->result();
 
 		// Alternative using SQL
 		// return $this->db
-		// 		->query( "SELECT * from cart INNER JOIN food ON  WHERE " )
-		// 		->result();
+		// ->query( "SELECT * from cart INNER JOIN food ON  WHERE " )
+		// ->result();
 	}
 
 	/**
@@ -73,6 +73,8 @@ class CartModel extends CI_Model {
 	 * @param int $id Cart id.
 	 *
 	 * @return void
+	 *
+	 * @throws Exception Database Error
 	 */
 	public function delete( $user_id, $id ) {
 		$this->db
@@ -80,6 +82,12 @@ class CartModel extends CI_Model {
 			->where( 'user_id', $user_id )
 			->where( 'food_id', $id )
 			->delete();
+
+		// Get Database Errors if there is error throw exception.
+		$errors = $this->db->error();
+		if ( isset( $errors['code'] ) && $errors['code'] !== 0 && $errors['message'] !== '' ) {
+			throw new Exception( $errors['message'] );
+		}
 	}
 	/**
 	 * Delete all the items from cart.
