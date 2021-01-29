@@ -124,10 +124,19 @@ class Cart extends CI_Controller {
 
 		// Load Model & Update the Quantity
 		$this->load->model( 'CartModel' );
-		$this->CartModel->changeQuantity( $user->id, $id, $val );
 
-		// Redirect to Cart
-		redirect( '/cart/view' );
+		// Set Content Type as JSON
+		header( 'Content-Type: application/json' );
+
+		try {
+			$this->CartModel->changeQuantity( $user->id, $id, $val );
+			// send status done.
+			echo json_encode( array( 'done' => true ) );
+		} catch ( \Exception $th ) {
+			// send datbase error.
+			echo json_encode( array( 'error' => $th->getMessage() ) );
+		}
+
 	}
 
 	/**

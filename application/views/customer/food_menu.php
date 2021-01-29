@@ -29,12 +29,12 @@
 					out += `<a href="<?php echo base_url() . 'cart/add/'; ?>${item.id}" class="btn btn-primary m-auto"><i class="fa fa-cart-plus"></i></a>`;
 				}else{
 					if(+item.quantity === 1){					
-						out += `<button class="btn btn-danger m-auto" onclick="deleteCart('<?php echo base_url(); ?>',${item.id})"><i class="fa fa-trash"></i></button>`;
+						out += `<button class="btn btn-danger m-auto" onclick="deleteCart('<?php echo base_url(); ?>',${item.id})"><i class="fa fa-minus"></i></button>`;
 					}else{
-						out += `<a href="<?php echo base_url() . 'cart/quantity/'; ?>${item.id}/-1" class="btn btn-danger m-auto"><i class="fa fa-minus"></i></a>`;
+						out += `<button class="btn btn-danger m-auto" onclick="cartQuantity('<?php echo base_url(); ?>',${item.id},-1)"><i class="fa fa-minus"></i></button>`;
 					}
-					out += `<span class="m-2 mt-auto mb-auto">${item.quantity}</span>`;
-					out += `<a href="<?php echo base_url() . 'cart/quantity/'; ?>${item.id}/1" class="btn btn-primary m-auto"><i class="fa fa-plus"></i></a>`;
+					out += `<span class="m-2 mt-auto mb-auto" id="cquantity-${item.id}">${item.quantity}</span>`;
+					out += `<button class="btn btn-primary m-auto" onclick="cartQuantity('<?php echo base_url(); ?>',${item.id},1)"><i class="fa fa-plus"></i></button>`;
 				}
 				out += 	'</div></div></div></div>';
 				row.append(out);
@@ -51,7 +51,7 @@
 		if(onProgress) return;
 		var scrollHeight = parseFloat(window.getComputedStyle(document.body).height.replace('px',''));
 		var scrollPos = window.innerHeight + window.scrollY;
-		if(((scrollHeight - 300) >= scrollPos) / scrollHeight == 0){
+		if(((scrollHeight - 311) >= scrollPos) / scrollHeight == 0){
 			onProgress = true;
 			getData();
 		}

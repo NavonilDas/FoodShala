@@ -51,6 +51,8 @@ class CartModel extends CI_Model {
 	 * @param int $val Change in Quantity.
 	 *
 	 * @return void
+	 * 
+	 * @throws Exception Database Error.
 	 */
 	public function changeQuantity( $user_id, $id, $val ) {
 		// Query to update in DB
@@ -64,6 +66,12 @@ class CartModel extends CI_Model {
 		// Alternative using SQL
 		// $this->db
 		// ->query("UPDATE cart SET quantity = quantity+1 WHERE food_id = $id AND user_id = $user_id");
+
+		// Get Database Errors if there is error throw exception.
+		$errors = $this->db->error();
+		if ( isset( $errors['code'] ) && $errors['code'] !== 0 && $errors['message'] !== '' ) {
+			throw new Exception( $errors['message'] );
+		}
 	}
 
 	/**
@@ -74,7 +82,7 @@ class CartModel extends CI_Model {
 	 *
 	 * @return void
 	 *
-	 * @throws Exception Database Error
+	 * @throws Exception Database Error.
 	 */
 	public function delete( $user_id, $id ) {
 		$this->db

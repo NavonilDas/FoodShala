@@ -43,17 +43,29 @@
 							
 							<div class="card-text d-flex m-1">
 								
-								<span>Quantity <?php echo $item->quantity; ?></span>
+								<span>Quantity <span id="cquantity-<?php echo $item->id; ?>"><?php echo $item->quantity; ?></span></span>
 
-								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/1'; ?>" type="button" class="btn btn-primary mr-2 ml-2 <?php echo ( $item->quantity == 20 ) ? 'disabled' : ''; ?>"><i class="fa fa-plus"></i></a>
-								<a href="<?php echo base_url() . 'cart/quantity/' . $item->id . '/-1'; ?>" type="button" class="btn btn-primary <?php echo ( $item->quantity == 1 ) ? 'disabled' : ''; ?>"><i class="fa fa-minus"></i></a>
+								<button 
+									class="btn btn-primary mr-2 ml-2" 
+									onclick="cartQuantity('<?php echo base_url(); ?>',<?php echo $item->id; ?>,1,true)"
+								>
+									<i class="fa fa-plus"></i>
+								</button>
+								
+								<button 
+									class="btn btn-primary <?php echo ( $item->quantity == 1 ) ? 'disabled' : ''; ?>"
+									onclick="cartQuantity('<?php echo base_url(); ?>',<?php echo $item->id; ?>,-1,true)"
+								>
+									<i class="fa fa-minus"></i>
+								</button>
+
 							</div>
 		
 							<div class="d-flex">
 								<?php
 									$delete_param = '"' . base_url() . '",' . $item->id;
 								?>
-								<button onclick="deleteCart('<?php echo base_url(); ?>',<?php echo $item->id?>)" class="btn btn-danger ml-auto">Delete</button>
+								<button onclick="deleteCart('<?php echo base_url(); ?>',<?php echo $item->id; ?>)" class="btn btn-danger ml-auto">Delete</button>
 							</div>
 		
 						</div>
@@ -78,7 +90,7 @@
 	</div>
 </div>
 
-<script src="<?php echo base_url().'static/main.js'?>"></script>
+<script src="<?php echo base_url() . 'static/main.js'; ?>"></script>
 
 </body>
 </html>
