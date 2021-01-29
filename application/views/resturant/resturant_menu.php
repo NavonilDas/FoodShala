@@ -13,9 +13,6 @@ if ( $user === null || $role !== 'Resturant' ) {
 	<div class="row food-menu m-0 pl-2"></div>
 
 	<script>
-	$('.addItem').click(function() {
-		window.location.href = "<?php echo base_url() . 'menu'; ?>";
-	});
 	$.get("<?php echo base_url() . 'menu/list'; ?>", function(data, status){
 		const row = $('.food-menu');
 		if(data.length === 0){

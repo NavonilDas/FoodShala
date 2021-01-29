@@ -26,6 +26,10 @@
 				<a class="nav-link" href="<?php echo base_url() . 'orders'; ?>">View Orders</a>
 			</li>
 
+			<li class="nav-item <?php echo ( $current_menu === 'all_menu' ) ? 'active' : ''; ?>">
+				<a class="nav-link" href="<?php echo base_url() . 'menu/all'; ?>">Menu</a>
+			</li>
+
 		</ul>
 
 		<div class="d-flex">

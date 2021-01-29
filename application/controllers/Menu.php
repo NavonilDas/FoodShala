@@ -159,4 +159,34 @@ class Menu extends CI_Controller {
 		// Print the json array of menu items
 		echo json_encode( $this->MenuModel->getItems( $user_id, $pgNo, $pref ) );
 	}
+
+	public function all() {
+		// Get user role from session
+		$role = $this->session->userdata( 'role' );
+
+		if ( $role !== 'Resturant' ) {
+			// Show Unauthorized Message if user is not resturant.
+			$err_msg = 'You don\'t Have permission to access this resource. To Visit Home <a href="' . base_url() . '">Click Here</a>';
+			show_error( $err_msg, 401, 'Unauthorized Access' );
+			return;
+		}
+
+		// Load Model
+		$this->load->model( 'MenuModel' );
+
+		// Parse the Query String
+		parse_str( $_SERVER['QUERY_STRING'], $_GET );
+
+		// Get the page number from query parameter of url.
+		$pgNo = isset( $_GET['page'] ) ? (int) $_GET['page'] : 0;
+		$pgNo = ( $pgNo < 1 ) ? 1 : $pgNo;
+
+		$data = array(
+			'items' => $this->MenuModel->getAllItems( $pgNo - 1 ),
+			'page_no' => $pgNo
+		);
+
+		// Show the Food Menu View
+		$this->load->view( 'resturant/food_menu',$data );
+	}
 }

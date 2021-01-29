@@ -55,6 +55,25 @@ class MenuModel extends CI_Model {
 	}
 
 	/**
+	 * Get The List of all food items.
+	 *
+	 * @param int $pgNo Page Number (Each page contains 12 items)
+	 *
+	 * @return array Array of Food items
+	 */
+	function getAllItems($pgNo){
+		$items_per_page = 12;
+
+		return $this->db
+		->select( 'food.id,food.name,food.price,food.thumbnail,user.name AS resturant' )
+		->from( 'food' )
+		->join( 'user', 'food.created_by = user.id' )
+		->limit( $items_per_page, $items_per_page * $pgNo )
+		->get()
+		->result();
+	}
+
+	/**
 	 * Get The List of Food Items Created by the user.
 	 *
 	 * @param int $userid Current Logged in User ID
