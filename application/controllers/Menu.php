@@ -15,8 +15,6 @@ class Menu extends CI_Controller {
 	 * @return void
 	 */
 	public function index() {
-		// Load User Model
-		$this->load->model( 'UserAuth' );
 		// Load Preference Model
 		$this->load->model( 'PreferenceModel' );
 
@@ -34,6 +32,16 @@ class Menu extends CI_Controller {
 
 		// Get The List of Preference
 		$data['prefer'] = $this->PreferenceModel->getPreferences();
+
+		// Parse the Query String
+		parse_str( $_SERVER['QUERY_STRING'], $_GET );
+		$item_id = isset( $_GET['id'] ) ? $_GET['id'] : -1;
+
+		if ( $item_id !== -1 ) {
+			// Load Menu Model
+			$this->load->model( 'MenuModel' );
+			$data['item'] = $this->MenuModel->getByID( $item_id );
+		}
 
 		// View Add Menu item
 		$this->load->view( 'resturant/add_menu_item', $data );
@@ -87,6 +95,53 @@ class Menu extends CI_Controller {
 			// Redirect to Home Page.
 			redirect( '/' );
 		}
+	}
+
+	/**
+	 * Controller For Update Food menu item to DB.
+	 *
+	 * @return void
+	 */
+	public function update($id = -1) {
+		$user = $this->session->userdata( 'user' );
+		$role = $this->session->userdata( 'role' );
+
+		if ( $user === null || $role === null || $role !== 'Resturant' || $id === -1) {
+			// Show Unauthorized Message if user is not defined
+			$err_msg = 'You don\'t Have permission to access this resource. To Visit Home <a href="' . base_url() . '">Click Here</a>';
+			show_error( $err_msg, 401, 'Unauthorized Access' );
+			return;
+		}
+
+		// Config For File Upload
+		$config['upload_path']   = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name']  = true;
+
+		// Load File Upload Library
+		$this->load->library( 'upload', $config );
+		// Load Menu Model.
+		$this->load->model( 'MenuModel' );
+
+		// Create Food Menu item Dictonary.
+		$menu              = array();
+		$menu['name']      = $this->input->post( 'name' );
+		$menu['price']     = $this->input->post( 'price' );
+		$menu['type']      = $this->input->post( 'preference' );
+		
+		// Upload thumbnail if some error occurs show error
+		if ( $this->upload->do_upload( 'thumbnail' ) ) {
+			// Get upload Info.
+			$data = $this->upload->data();
+
+			$menu['thumbnail'] = $data['file_name'];
+		}
+
+		// Update Food Menu Item to DB.
+		$this->MenuModel->update( $id, $menu );
+
+		// Redirect to Home Page.
+		redirect( '/' );
 	}
 
 	/**
@@ -182,11 +237,11 @@ class Menu extends CI_Controller {
 		$pgNo = ( $pgNo < 1 ) ? 1 : $pgNo;
 
 		$data = array(
-			'items' => $this->MenuModel->getAllItems( $pgNo - 1 ),
-			'page_no' => $pgNo
+			'items'   => $this->MenuModel->getAllItems( $pgNo - 1 ),
+			'page_no' => $pgNo,
 		);
 
 		// Show the Food Menu View
-		$this->load->view( 'resturant/food_menu',$data );
+		$this->load->view( 'resturant/food_menu', $data );
 	}
 }

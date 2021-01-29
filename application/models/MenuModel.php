@@ -61,7 +61,7 @@ class MenuModel extends CI_Model {
 	 *
 	 * @return array Array of Food items
 	 */
-	function getAllItems($pgNo){
+	function getAllItems( $pgNo ) {
 		$items_per_page = 12;
 
 		return $this->db
@@ -79,7 +79,7 @@ class MenuModel extends CI_Model {
 	 * @param int $userid Current Logged in User ID
 	 * @param int $pgNo Page Number
 	 *
-	 * @return void
+	 * @return array Array of Food Items.
 	 */
 	public function getMyItems( $userid, $pgNo = 0 ) {
 		$items_per_page = 12;
@@ -101,12 +101,46 @@ class MenuModel extends CI_Model {
 	 * @return void
 	 */
 	public function delete( $id, $user_id ) {
-		return $this->db->delete(
+		$this->db->delete(
 			'food',
 			array(
 				'id'         => $id,
 				'created_by' => $user_id,
 			)
 		);
+	}
+
+	/**
+	 * Get Food Menu Item By ID.
+	 *
+	 * @param int $id Food Item id
+	 *
+	 * @return object Food Menu Item Object.
+	 */
+	public function getByID( $id ) {
+		$items = $this->db
+					->from( 'food' )
+					->where( 'id', $id )
+					->get()
+					->result();
+		if ( count( $items ) <= 0 ) {
+			return null;
+		}
+
+		return $items[0];
+	}
+
+	/**
+	 * Update Food Menu Item By ID.
+	 *
+	 * @param int   $id Food Item id
+	 * @param array $item Dictonary of food item.
+	 *
+	 * @return void
+	 */
+	public function update( $id, $item ) {
+		$this->db
+		->where( 'id', $id )
+		->update( 'food', $item );
 	}
 }
