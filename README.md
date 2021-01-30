@@ -21,3 +21,45 @@ Create Database with any name.
    2. For LAMP Linux directory is `/var/www/html` command is ```cp -r ./ /var/www/html/```
 
 6. Start the server and visit local url.
+
+## Screenshots
+
+### Customer
+
+Home Page Without login
+![Home](./screenshots/Home.png)
+
+Login
+![Login](./screenshots/Login.png)
+
+Sign Up
+![Sign Up](./screenshots/Register.png)
+
+Customer Home (Veg)
+![My Orders](./screenshots/VegUserHome.png)
+
+Cart
+![Cart](./screenshots/Cart.png)
+
+My Orders
+![My Orders](./screenshots/CustomerOrders.png)
+
+### Restaurant
+
+Restaurant Home.
+![Restaurant Home](./screenshots/RestaurantHome.png)
+
+Customers Orders.
+![Customers Orders](./screenshots/OrdersQueue.png)
+
+Completed Orders.
+![Completed Orders](./screenshots/CompleteOrders.png)
+
+Add Food Item.
+![Add Item](./screenshots/AddItem.png)
+
+Update Food Item.
+![Update Item](./screenshots/UpdateItem.png)
+
+All Food Items.
+![All Items](./screenshots/RestaurantMenu.png)
