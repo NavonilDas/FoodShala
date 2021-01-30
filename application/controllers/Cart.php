@@ -88,14 +88,14 @@ class Cart extends CI_Controller {
 		// Set Content Type as JSON
 		header( 'Content-Type: application/json' );
 
-		// catch databse errors.
+		// catch database errors.
 		try {
 			$this->CartModel->delete( $user->id, $id );
 			// send status done.
 			echo json_encode( array( 'done' => true ) );
 		} catch ( \Exception $th ) {
 
-			// send datbase error.
+			// send database error.
 			echo json_encode( array( 'error' => $th->getMessage() ) );
 		}
 	}
@@ -104,7 +104,7 @@ class Cart extends CI_Controller {
 	 * Controller to: Update The Quantity in cart.
 	 *
 	 * @param int $id Cart Item id
-	 * @param int $val The Change in quantiy
+	 * @param int $val The Change in quantity
 	 *
 	 * @return void
 	 */
@@ -133,7 +133,7 @@ class Cart extends CI_Controller {
 			// send status done.
 			echo json_encode( array( 'done' => true ) );
 		} catch ( \Exception $th ) {
-			// send datbase error.
+			// send database error.
 			echo json_encode( array( 'error' => $th->getMessage() ) );
 		}
 
