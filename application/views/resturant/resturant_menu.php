@@ -24,8 +24,7 @@ if ( $user === null || $role !== 'Resturant' ) {
 				row.append('<div class="alert alert-primary" role="alert">No Food Items available!</div>');
 			}
 			for(var item of data){
-				row.append(`<div class="col-md-3 mt-3">
-				<div class="card">
+				row.append(`<div class="col-md-3 mt-3 d-flex"><div class="card mt-auto mb-auto">
 					<img class="card-img-top" src="<?php echo base_url().'uploads/'; ?>${item.thumbnail}" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title">${item.name}</h5>

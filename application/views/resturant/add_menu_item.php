@@ -35,7 +35,7 @@ if ( $food !== null ) {
 							class="form-control" 
 							name="name" 
 							id="Name" 
-							placeholder="Resturant Name" 
+							placeholder="Food Name" 
 							value="<?php echo $name; ?>"
 							required
 						/>

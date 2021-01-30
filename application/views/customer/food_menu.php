@@ -20,7 +20,7 @@
 			if(data.length == 0) return;
 
 			for(var item of data){
-				var out = '<div class="col-md-3 mt-3" style="min-width:251px;"><div class="card">';
+				var out = '<div class="col-md-3 mt-3 d-flex" style="min-width:251px;"><div class="card mt-auto mb-auto">';
 				out += `<img class="card-img-top" src="<?php echo base_url() . 'uploads/'; ?>${item.thumbnail}" alt="${item.name}">`;
 				out += `<div class="card-body"><h5 class="card-title">${item.name}</h5>`;
 				out += `<h6 class="card-subtitle mb-2 text-muted">By ${item.resturant}</h6><div class="d-flex">`;

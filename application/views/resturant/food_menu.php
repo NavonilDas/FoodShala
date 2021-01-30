@@ -12,8 +12,7 @@
 
 <div class="row" style="margin:0 0 60px 0;">
 	<?php foreach ($items as $item) { ?>
-		<div class="col-md-3 mt-3" style="min-width:251px;">
-			<div class="card">
+		<div class="col-md-3 mt-3 d-flex" style="min-width:251px;"><div class="card mt-auto mb-auto">
 				<img class="card-img-top" src="<?php echo base_url() . 'uploads/'.$item->thumbnail; ?>" alt="<?php echo $item->name; ?>">
 				<div class="card-body">
 					<h5 class="card-title"><?php echo $item->name; ?></h5>
